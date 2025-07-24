@@ -18,7 +18,7 @@ function startGame() {
   startWord = prompt(`Give me the first word, dear "${playerName}", please! `).toUpperCase();
   //console.log(welcome);
 
-  while (startWord.length < 3 || startWord === 'THE' || startWord === '   ') {
+  while (startWord.length < 3 || startWord === 'THE' || startWord === '' || startWord === ' ') {
     console.log('a ', startWord);
     startWord = prompt('Wrong word! Check the rules and try again with a new one! ').toUpperCase();
     console.log('b ', startWord);
@@ -29,13 +29,13 @@ function startGame() {
     process.exit();
   }*/
 
-  if (startWord !== '' && startWord !== ' ') {
-    console.log('c ', startWord);
-    const supportIndex = startWord.length - 1;
-    console.log('d ', supportIndex);
-    lastChar = startWord.at(supportIndex);
-    console.log('e ', lastChar);
-  }
+  //if (startWord !== '' && startWord !== ' ') {
+  console.log('c ', startWord);
+  const supportIndex = startWord.length - 1;
+  console.log('d ', supportIndex);
+  lastChar = startWord.at(supportIndex);
+  console.log('e ', lastChar);
+  //}
   return lastChar;
 }
 
@@ -55,26 +55,26 @@ function askNextWord() {
   //console.log('0 ', lastChar);
   //const lastChar = '';
   console.log('f ', lastChar);
-  nextWord = prompt(`Now please provide a new word starting with the letter "${lastChar}"! `).toLocaleUpperCase();
+  nextWord = prompt(`Now please provide a new word starting with the letter "${lastChar}"! `).toUpperCase();
   let firstChar = nextWord[0];
   console.log('g ', nextWord);
   console.log('h ', firstChar);
 
-  while ((firstChar !== lastChar && nextWord.length < 3) || nextWord === 'THE' || nextWord === '   ') {
+  while (firstChar !== lastChar || nextWord.length < 3 || nextWord === 'THE' || nextWord === '' || nextWord === ' ') {
     nextWord = prompt('Wrong word! Check the rules and try again with a new one! ').toUpperCase();
     firstChar = nextWord[0];
     console.log('i ', nextWord);
     console.log('j ', firstChar);
   }
 
-  if (nextWord !== '' && nextWord !== ' ') {
-    console.log('k ', nextWord);
-    console.log('l ', firstChar);
-    const supportIndex = nextWord.length - 1;
-    console.log('m ', supportIndex);
-    lastChar = nextWord.at(supportIndex);
-    console.log('n ', lastChar);
-  }
+  //if (nextWord !== '' && nextWord !== ' ') {
+  console.log('k ', nextWord);
+  console.log('l ', firstChar);
+  const supportIndex = nextWord.length - 1;
+  console.log('m ', supportIndex);
+  lastChar = nextWord.at(supportIndex);
+  console.log('n ', lastChar);
+  //}
   return lastChar;
 }
 //askNextWord();
@@ -91,12 +91,15 @@ function main() {
   lastChar = askNextWord();
   console.log('p ', lastChar);
 
-  while (startWord !== 'QUIT' && nextWord !== 'QUIT') {
-    askNextWord();
-  }
   if (nextWord === 'QUIT') {
     console.log('THANK YOU FOR PLAYING WITH ME, SEE YOU NEXT TIME!');
     process.exit();
   }
+
+  while (nextWord !== 'QUIT') {
+    askNextWord();
+  }
+
+  
 }
 main();
