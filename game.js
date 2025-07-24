@@ -2,7 +2,7 @@
 import promptSync from 'prompt-sync';
 const prompt = promptSync({ sigint: true });
 
-const playerName = prompt('This is the Wordchain game, please give me your name before we get started! ');
+const playerName = prompt('This is the Wordchain game, please give me your name before we get started! ').toUpperCase();
 
 let lastChar = '';
 let startWord = '';
@@ -11,7 +11,7 @@ let nextWord = '';
 function startGame() {
   console.log(`Welcome ${playerName}! The rules of this game are simple:
     1. You give me a word and 
-    2. the next player have to give an other one starting with the last letter of the previous word.
+    2. then you have to give an other one starting with the last letter of the previous word.
     3. Each word have to be at least 3 characters long and you cannot play using the definite article "the".
     4. If you type quit any time, the game stops. Avoid using this word if you enjoy and want to get on with the game!
     Let's get started, have fun!`);
