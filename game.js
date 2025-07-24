@@ -4,69 +4,99 @@ const prompt = promptSync({ sigint: true });
 
 const playerName = prompt('This is the Wordchain game, please give me your name before we get started! ');
 
+let lastChar = '';
+let startWord = '';
+let nextWord = '';
+
 function startGame() {
   console.log(`Welcome ${playerName}! The rules of this game are simple:
     1. You give me a word and 
     2. the next player have to give an other one starting with the last letter of the previous word.
-    3. Each word have to be at least 3 characters long and you cannot play using the definite article "the".`);
-  let welcome = prompt(`So give me the first word ${playerName}, please! `).toUpperCase();
+    3. Each word have to be at least 3 characters long and you cannot play using the definite article "the".
+    4. If you type quit any time, the game stops. Avoid using this word if you enjoy and want to get on with the game!
+    Let's get started, have fun!`);
+  startWord = prompt(`Give me the first word, dear "${playerName}", please! `).toUpperCase();
   //console.log(welcome);
 
-  while (welcome.length < 3 || welcome === 'THE' || welcome === '   ') {
-    console.log('a ', welcome);
-    welcome = prompt('Wrong word! Check the rules and try again with a new one! ').toUpperCase();
-    console.log('b ', welcome);
+  while (startWord.length < 3 || startWord === 'THE' || startWord === '   ') {
+    console.log('a ', startWord);
+    startWord = prompt('Wrong word! Check the rules and try again with a new one! ').toUpperCase();
+    console.log('b ', startWord);
   }
 
-  if (welcome !== '' && welcome !== ' ') {
-    console.log('c ', welcome);
-    //const supportIndex = welcome.length - 1;
-    //console.log('d ', supportIndex);
-    //const lastChar = welcome.at(supportIndex);
-    //console.log('e ', lastChar);
-    return welcome;
+  /*if (startWord === 'QUIT') {
+    console.log('THANK YOU FOR PLAYING WITH ME, SEE YOU NEXT TIME!');
+    process.exit();
+  }*/
+
+  if (startWord !== '' && startWord !== ' ') {
+    console.log('c ', startWord);
+    const supportIndex = startWord.length - 1;
+    console.log('d ', supportIndex);
+    lastChar = startWord.at(supportIndex);
+    console.log('e ', lastChar);
   }
+  return lastChar;
 }
 
-function storeLastCharacter() {
+/*function storeLastCharacter() {
   const word = startGame();
   const supportIndex = word.length - 1;
   //console.log('d ', supportIndex);
   const lastChar = word.at(supportIndex);
   console.log('e ', lastChar);
   return lastChar;
-}
+}*/
 //storeLastCharacter();
 //console.log(storeLastCharacter());
 
-function askNextWord(/*lastChar*/) {
-  //lastChar = startGame();
+function askNextWord() {
+  //lastChar = '';
   //console.log('0 ', lastChar);
-  let lastChar = storeLastCharacter();
-  let nextWord = prompt(`Now please provide a new word starting with the letter "${lastChar}"! `).toLocaleUpperCase();
+  //const lastChar = '';
+  console.log('f ', lastChar);
+  nextWord = prompt(`Now please provide a new word starting with the letter "${lastChar}"! `).toLocaleUpperCase();
   let firstChar = nextWord[0];
-  //console.log('a ', nextWord);
-  console.log('f ', firstChar);
+  console.log('g ', nextWord);
+  console.log('h ', firstChar);
 
   while ((firstChar !== lastChar && nextWord.length < 3) || nextWord === 'THE' || nextWord === '   ') {
     nextWord = prompt('Wrong word! Check the rules and try again with a new one! ').toUpperCase();
     firstChar = nextWord[0];
-    console.log('g ', nextWord);
-    console.log('h ', firstChar);
+    console.log('i ', nextWord);
+    console.log('j ', firstChar);
   }
 
   if (nextWord !== '' && nextWord !== ' ') {
-    console.log('i ', nextWord);
-    console.log('j ', firstChar);
-    //return nextWord;
+    console.log('k ', nextWord);
+    console.log('l ', firstChar);
+    const supportIndex = nextWord.length - 1;
+    console.log('m ', supportIndex);
+    lastChar = nextWord.at(supportIndex);
+    console.log('n ', lastChar);
   }
+  return lastChar;
 }
-askNextWord();
+//askNextWord();
 //console.log(askNextWord());
 
-/*function main() {
-  startGame();
-  //const lastChar = storeLastCharacter();
-  askNextWord();
+function main() {
+  lastChar = startGame();
+  if (startWord === 'QUIT') {
+    console.log('THANK YOU FOR PLAYING WITH ME, SEE YOU NEXT TIME!');
+    process.exit();
+  }
+  console.log('o ', lastChar);
+
+  lastChar = askNextWord();
+  console.log('p ', lastChar);
+
+  while (startWord !== 'QUIT' && nextWord !== 'QUIT') {
+    askNextWord();
+  }
+  if (nextWord === 'QUIT') {
+    console.log('THANK YOU FOR PLAYING WITH ME, SEE YOU NEXT TIME!');
+    process.exit();
+  }
 }
-main();*/
+main();
