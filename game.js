@@ -10,7 +10,7 @@ function startGame() {
     2. the next player have to give an other one starting with the last letter of the previous word.
     3. Each word have to be at least 3 characters long and you cannot play using the definite article "the".`);
   let welcome = prompt(`So give me the first word ${playerName}, please! `).toUpperCase();
-  console.log(welcome);
+  //console.log(welcome);
 
   while (welcome.length < 3 || welcome === 'THE' || welcome === '   ') {
     console.log('a ', welcome);
@@ -33,7 +33,7 @@ function storeLastCharacter() {
   const supportIndex = word.length - 1;
   //console.log('d ', supportIndex);
   const lastChar = word.at(supportIndex);
-  //console.log('e ', lastChar);
+  console.log('e ', lastChar);
   return lastChar;
 }
 //storeLastCharacter();
@@ -46,18 +46,18 @@ function askNextWord(/*lastChar*/) {
   let nextWord = prompt(`Now please provide a new word starting with the letter "${lastChar}"! `).toLocaleUpperCase();
   let firstChar = nextWord[0];
   //console.log('a ', nextWord);
-  console.log('b ', firstChar);
+  console.log('f ', firstChar);
 
   while ((firstChar !== lastChar && nextWord.length < 3) || nextWord === 'THE' || nextWord === '   ') {
     nextWord = prompt('Wrong word! Check the rules and try again with a new one! ').toUpperCase();
     firstChar = nextWord[0];
-    console.log('c ', nextWord);
-    console.log('d ', firstChar);
+    console.log('g ', nextWord);
+    console.log('h ', firstChar);
   }
 
   if (nextWord !== '' && nextWord !== ' ') {
-    console.log('e ', nextWord);
-    console.log('f ', firstChar);
+    console.log('i ', nextWord);
+    console.log('j ', firstChar);
     //return nextWord;
   }
 }
